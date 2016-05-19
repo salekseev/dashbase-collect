@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<!-- log4j configuration file for rapid server -->
+<log4j:configuration debug="true" xmlns:log4j="http://jakarta.apache.org/log4j/">
+  <!-- Appenders. Most of the RollingFileAppender is attached to an AsyncAppender -->
+  <appender name="infoLog" class="org.apache.log4j.RollingFileAppender">
+    <param name="File" value="${log.home}/dashbase_collector.info" />
+    <param name="MaxFileSize" value="100MB" />
+    <param name="MaxBackupIndex" value="10" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%p %d{yyyy-MM-dd HH:mm:ss} [%t] (%F:%L): %m%n" />
+    </layout>
+  </appender>
+  <appender name="asyncInfoLog" class="org.apache.log4j.AsyncAppender">
+    <param name="Blocking" value="false" />
+    <param name="LocationInfo" value="true"/>
+    <appender-ref ref="infoLog" />
+  </appender>
+  <!-- Loggers -->
+  <root>
+    <priority value="info" />
+    <appender-ref ref="asyncInfoLog" />
+  </root>
+</log4j:configuration>

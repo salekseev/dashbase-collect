@@ -1,0 +1,122 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.dashbase</groupId>
+	<artifactId>dashbase-collector</artifactId>
+	<packaging>jar</packaging>
+	<name>dashbase-collector</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>Data collection via Http</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jackson.version>2.6.4</jackson.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.8</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                                <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                                <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+		        <artifactId>maven-assembly-plugin</artifactId>
+	 	        <version>2.2.1</version>
+		        <executions>
+		          <execution>
+		            <id>make-bundles</id>
+		            <goals>
+		              <goal>single</goal>
+		            </goals>
+		            <phase>package</phase>
+		            <configuration>
+	 		          <finalName>dashbase-collector-${project.version}</finalName>
+		              <descriptors>
+		                <descriptor>release.xml</descriptor>
+		              </descriptors>
+		            </configuration>
+		          </execution>
+		        </executions>
+            </plugin>
+		</plugins>
+	</build>
+
+	<dependencies>     
+		<dependency>
+		   <groupId>com.fasterxml.jackson.core</groupId>
+		   <artifactId>jackson-databind</artifactId>
+		   <version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+		   <groupId>commons-io</groupId>
+		   <artifactId>commons-io</artifactId>
+		   <version>2.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.sparkjava</groupId>
+		    <artifactId>spark-core</artifactId>
+		    <version>2.5</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+		<dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+		<dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.0</version>
+        </dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.5</version>
+			<scope>test</scope>
+		</dependency>		
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>releases</id>
+			<name>Releases</name>
+			<url>https://oss.sonatype.org/content/repositories/releases</url>
+		</repository>
+		
+		<repository>
+		        <id>apache-snapshots</id>
+		        <name>Apache Snapshots</name>
+		        <url>https://repository.apache.org/snapshots/</url>
+		        <snapshots>
+		            <enabled>true</enabled>
+		            <updatePolicy>always</updatePolicy>
+		        </snapshots>
+		 </repository>
+	</repositories>
+</project>
+
