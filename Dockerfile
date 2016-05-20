@@ -11,3 +11,6 @@ ADD target/dashbase-collector-${COLLECTOR_VERSION}-release.tar.gz /opt
 RUN chmod +x -R /opt/dashbase-collector
 
 WORKDIR /opt/dashbase-collector
+
+ENTRYPOINT ["/opt/dashbase-collector/bin/run_dashbase_collector.sh"]
+CMD ["/opt/dashbase-collector/conf/sink.json"]

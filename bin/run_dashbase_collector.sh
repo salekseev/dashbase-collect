@@ -11,11 +11,21 @@ logs=logs
 
 mkdir -p $logs
 
+if [[ -z $PORT ]]
+then
+  PORT=4567
+fi
+
 CONF_FILE=$1
 
+echo "port: $PORT"
 echo "configuration file loaded: $CONF_FILE"
 
-JAVA_OPTS="-server -d64 -Dlog4j.configuration=file://$(pwd)/conf/log4j.xml"
+JAVA_OPTS="-server -d64 -Dlog4j.configuration=file://$(pwd)/conf/log4j.xml \
+           -Ddashbase.collector.port=$PORT"
+
+#JAVA_DEBUG="-Xdebug -Xrunjdwp:transport=dt_socket,address=1044,server=y,suspend=y"
+#GC_OPTS="-XX:+UseConcMarkSweepGC -XX:+UseParNewGC"
 
 MAIN_CLASS="io.dashbase.collector.DashbaseCollectorServer"
 CLASSPATH=$dist/*:$lib/*
