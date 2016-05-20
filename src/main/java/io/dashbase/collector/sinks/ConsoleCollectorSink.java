@@ -11,4 +11,14 @@ public class ConsoleCollectorSink implements CollectorSink
   {
     System.out.println("console: " + name + " ==> " + new String(data, Charsets.UTF_8));
   }
+
+  @Override
+  public void initialize(Map<String, Object> config)
+  {	
+  }
+
+  @Override
+  public void shutdown()
+  {	
+  }
 }

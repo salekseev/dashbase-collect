@@ -11,9 +11,13 @@ logs=logs
 
 mkdir -p $logs
 
+CONF_FILE=$1
+
+echo "configuration file loaded: $CONF_FILE"
+
 JAVA_OPTS="-server -d64 -Dlog4j.configuration=file://$(pwd)/conf/log4j.xml"
 
 MAIN_CLASS="io.dashbase.collector.DashbaseCollectorServer"
 CLASSPATH=$dist/*:$lib/*
 
-exec java $JAVA_OPTS $HEAP_OPTS $GC_OPTS $JMX_OPTS $JAVA_DEBUG -classpath $CLASSPATH -Dlog.home=$logs $MAIN_CLASS #$CONF_FILE
+exec java $JAVA_OPTS $HEAP_OPTS $GC_OPTS $JMX_OPTS $JAVA_DEBUG -classpath $CLASSPATH -Dlog.home=$logs $MAIN_CLASS $CONF_FILE

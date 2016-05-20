@@ -1,0 +1,13 @@
+{
+  "type":"kafka",
+  "params" : {
+     "bootstrap.servers": "192.168.99.100:9092",
+     "group.id": "dashbase_test",
+     "enable.auto.commit": true,
+     "auto.commit.interval.ms": 1000,
+     "session.timeout.ms": 30000,
+     "key.serializer": "org.apache.kafka.common.serialization.StringSerializer",
+     "value.serializer" : "org.apache.kafka.common.serialization.ByteArraySerializer",
+     "partition.assignment.strategy": "range"
+  }
+}
