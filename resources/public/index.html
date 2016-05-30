@@ -1,27 +1,46 @@
 <html>
   <head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   </head>
   <body>
-    <h1>Dashbase Collector Console</h1>
-    <p>
-      <h2>Insert: </h2>
-      <form id="insertForm">
-        Table name: <input id="insertTableName" /> <br/>
-        Multiple Events: <input id="insertMultiple" type="checkbox" /> <br/>
-        Data: <textarea id="insertData" rows="8" cols="50"> </textarea> <br/>
-        <input type="submit" value="insert" />
+    <h1><p class="text-center" class="lead">Dashbase Collector Console</p></h1>
+    <div class="container">
+	 <div class="row">
+		<div class="col-md-6">
+      <p class="lead"><h2>Insert: </h2></p>
+      <form id="insertForm" >
+		<div class="form-group">
+           <label class="lead" for="insertTableName">Table name:</label>
+           <input class="form-control" id="insertTableName" />
+        </div>
+		<div class="form-group">
+		   <label class="lead" for="insertMultiple">Multiple Events:</label>
+           <input class="form-control" id="insertMultiple" type="checkbox" />
+        </div>
+		<div class="form-group">
+		  <label class="lead" for="insertData">JSON:</label>
+          <textarea class="form-control" id="insertData" rows="8" cols="50"> </textarea>
+        </div>
+        <input class="btn btn-primary" type="submit" value="insert" />
       </form>
-    </p>
-    <hr/>
-    <p>
-      <h2>Upload: </h2>
+      </div>
+		<div class="col-md-6">
+      <p class="lead"><h2>Upload: </h2></p>
       <form id="uploadForm">
-        Table name: <input id="uploadName" /> <br/>
-        File: <input type="file" id="uploadFile" /> <br/>
-        <input type="submit" value="upload" />
+	    <div class="form-group">
+		  <label class="lead" for="uploadName">Table name:</label>
+          <input class="form-control" id="uploadName" />
+        </div>
+        <div class="form-group">
+		  <label class="lead" for="uploadFile">File:</label>
+          <input class="form-control" type="file" id="uploadFile" />
+        </div>
+        <input class="btn btn-primary" type="submit" value="upload" />
       </form>
-    </p>
+      </div>
+      </div>
+    </div>
 	<script src="js/collector-api.js"></script>
   </body>
 </html>
