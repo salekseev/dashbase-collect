@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Dashbase Collector Console</h1>
+    <p>
+      <h2>Insert: </h2>
+      <form id="insertForm">
+        Table name: <input id="insertTableName" /> <br/>
+        Multiple Events: <input id="insertMultiple" type="checkbox" /> <br/>
+        Data: <textarea id="insertData" rows="8" cols="50"> </textarea> <br/>
+        <input type="submit" value="insert" />
+      </form>
+    </p>
+    <hr/>
+    <p>
+      <h2>Upload: </h2>
+      <form id="uploadForm">
+        Table name: <input id="uploadName" /> <br/>
+        File: <input type="file" id="uploadFile" /> <br/>
+        <input type="submit" value="upload" />
+      </form>
+    </p>
+	<script src="js/collector-api.js"></script>
+  </body>
+</html>

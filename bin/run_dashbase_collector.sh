@@ -4,6 +4,7 @@ bin=`dirname "$0"`
 bin=`cd "$bin"; pwd`
 basedir=$bin/..
 dist=$basedir/target
+resources=$basedir/resources
 lib=$dist/lib
 cd $basedir
 
@@ -28,6 +29,6 @@ JAVA_OPTS="-server -d64 -Dlog4j.configuration=file://$(pwd)/conf/log4j.xml \
 #GC_OPTS="-XX:+UseConcMarkSweepGC -XX:+UseParNewGC"
 
 MAIN_CLASS="io.dashbase.collector.DashbaseCollectorServer"
-CLASSPATH=$dist/*:$lib/*
+CLASSPATH=$dist/*:$lib/*:$resources
 
 exec java $JAVA_OPTS $HEAP_OPTS $GC_OPTS $JMX_OPTS $JAVA_DEBUG -classpath $CLASSPATH -Dlog.home=$logs $MAIN_CLASS $CONF_FILE

@@ -7,9 +7,10 @@ import org.apache.commons.io.Charsets;
 public class ConsoleCollectorSink implements CollectorSink
 {
   @Override
-  public void add(String name, Map<String, String> params, byte[] data) throws Exception
+  public void add(String name, Map<String, String> params, byte[] data, boolean isBatch) throws Exception
   {
-    System.out.println("console: " + name + " ==> " + new String(data, Charsets.UTF_8));
+    String batchMode = isBatch ? "(batch mode)" : "";
+    System.out.println("console " + batchMode + ": " + name + " ==> " + new String(data, Charsets.UTF_8));
   }
 
   @Override

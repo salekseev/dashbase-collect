@@ -13,7 +13,7 @@ public class KafkaCollectorSink implements CollectorSink {
   private Producer<String, byte[]> producer = null;
   
 	@Override
-	public void add(String name, Map<String, String> params, byte[] data) throws Exception {
+	public void add(String name, Map<String, String> params, byte[] data, boolean isBatch) throws Exception {
 	  ProducerRecord<String, byte[]> msg = new ProducerRecord<String, byte[]>(name, data);
     producer.send(msg);
 	}
