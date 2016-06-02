@@ -1,5 +1,6 @@
 package io.dashbase.collector;
 
+import static spark.Spark.before;
 import static spark.Spark.port;
 import static spark.Spark.post;
 import static spark.Spark.staticFileLocation;
@@ -18,6 +19,10 @@ import javax.servlet.http.Part;
 import org.apache.commons.io.Charsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import spark.Filter;
+import spark.Request;
+import spark.Response;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
@@ -47,7 +52,16 @@ public class DashbaseCollectorRunner
     } catch (Exception jpe) {
        return false;
     }    
- }
+  }
+
+  private static void enableCORS() {
+   before(new Filter() {
+     @Override
+     public void handle(Request request, Response response) {
+         response.header("Access-Control-Allow-Origin", "*");
+     }
+   });
+  }
   
   public void runServer() {
     int port;
@@ -60,6 +74,8 @@ public class DashbaseCollectorRunner
     staticFileLocation("/public");
 
     port(port);
+
+    enableCORS();
 
     post("/collect/:id", (request, response) -> {      
       String name = request.params(":id");      
