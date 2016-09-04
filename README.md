@@ -7,7 +7,7 @@ Http server handles POST of json data and pass on to a sink, e.g. Kafka
 ~~~~
 example:
 ~~~~
-./bin/run_dashbase_collector.sh conf/console_sink.json
+./bin/run_dashbase_collector.sh conf/console-sink.json
 ~~~~
 
 ### curl examples:
