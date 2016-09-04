@@ -14,6 +14,8 @@ example:
 ~~~~
 curl -X POST http://localhost:4567/upload/john -F file=@sample_data/events.json
 
+curl -H "Content-Encoding:gzip" -X POST http://localhost:4567/upload/john -F file=@sample_data/events.json.gz
+
 cat sample_data/single_event.json | curl -H "Content-Type: application/json" -X POST http://localhost:4567/collect/john --data @-
 
 cat sample_data/multiple_events.json | curl -H "Content-Type: application/json" -X POST http://localhost:4567/collect/john?isBatch=true --data @-
