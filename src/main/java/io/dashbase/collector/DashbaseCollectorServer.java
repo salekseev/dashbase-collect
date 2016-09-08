@@ -15,6 +15,7 @@ import com.google.inject.Injector;
 import io.dashbase.collector.sink.SinkConfig;
 import io.dashbase.collector.source.CollectorHTTPSource;
 import io.dashbase.collector.source.CollectorSource;
+import io.dashbase.collector.source.CollectorSyslogSource;
 
 public class DashbaseCollectorServer {
   private static final Logger logger = LoggerFactory.getLogger(DashbaseCollectorServer.class);
@@ -44,7 +45,12 @@ public class DashbaseCollectorServer {
     final SinkConfig sinkConfig = createSinkConfig(cmdlineArgs);
     final Injector injector = Guice.createInjector(
           new DashbaseCollectorModule(cmdlineArgs, sinkConfig));
-    final CollectorHTTPSource collector = new CollectorHTTPSource();
+    final CollectorSource collector;
+    if (cmdlineArgs.useSyslogServer) {
+      collector = new CollectorSyslogSource();
+    } else {
+      collector = new CollectorHTTPSource();
+    }
     injector.injectMembers(collector);
     return collector;
   }
