@@ -1,4 +1,4 @@
-package io.dashbase.collector.sinks;
+package io.dashbase.collector.sink;
 
 import java.util.Map;
 

@@ -3,11 +3,16 @@ Http server handles POST of json data and pass on to a sink, e.g. Kafka
 
 ### start server
 ~~~~
-./bin/run_dashbase_collector.sh CONF_FILE
+./bin/run_dashbase_collector.sh -s CONF_FILE
 ~~~~
 example:
 ~~~~
-./bin/run_dashbase_collector.sh conf/console-sink.json
+./bin/run_dashbase_collector.sh -s conf/console-sink.json
+~~~~
+
+### start a syslog collector server
+~~~~
+./bin/run_dashbase_collector.sh -s conf/console-sink.json --syslog
 ~~~~
 
 ### curl examples:
